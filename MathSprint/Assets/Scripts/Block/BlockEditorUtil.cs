@@ -25,7 +25,7 @@ namespace Assets.Scripts.Block
             _topEndingEnabledProperty = serializedObject.FindProperty("_topEndingEnabled");
         }
 
-        private void ClearChildren(Transform parent)
+        private static void ClearChildren(Transform parent)
         {
             int childrenCount = parent.childCount;
             List<GameObject> toDestroy = new List<GameObject>(childrenCount);
@@ -58,52 +58,33 @@ namespace Assets.Scripts.Block
             return block;
         }
 
-        private void ConstructAtoms()
+        private static void ConstructAtoms(Block block, GameObject atomPrefab, int length)
         {
-            Block block = GetBlock();
-            if(block == null)
+            if (block == null)
                 return;
 
             ClearChildren(block.transform);
 
-            int length = _horizontalLengthProperty.intValue;
-
             if (length <= 0)
-            {
                 return;
-            }
-
-            Object atomReference = _blockAtomPrefabProperty.objectReferenceValue;
-
-            if (atomReference == null)
-            {
-                return;
-            }
-
-            GameObject atomPrefab = (GameObject)_blockAtomPrefabProperty.objectReferenceValue;
+            
 
             for (int i = 0; i < length; i++)
             {
                 //GameObject atomInstance = Instantiate(atomPrefab, block.transform);
-                GameObject atomInstance = (GameObject) PrefabUtility.InstantiatePrefab(atomReference);
+                GameObject atomInstance = (GameObject) PrefabUtility.InstantiatePrefab(atomPrefab);
                 atomInstance.transform.parent = block.transform;
                 atomInstance.transform.localPosition = Vector3.right * i;
                 atomInstance.name = $"BlockAtom#{i}";
             }
         }
 
-        private void MakeEndings()
+        private static void MakeEndings(Block block, bool leftEndingEnabled, bool rightEndingEnabled, bool topEndingEnabled)
         {
-            Block block = GetBlock();
             if (block == null)
                 return;
 
             int childCount = block.transform.childCount;
-
-            bool leftEndingEnabled = _leftEndingEnabledProperty.boolValue;
-            bool rightEndingEnabled = _rightEndingEnabledProperty.boolValue;
-            bool topEndingEnabled = _topEndingEnabledProperty.boolValue;
-
 
             if (childCount == 0)
             {
@@ -181,21 +162,48 @@ namespace Assets.Scripts.Block
 
             ProcessInspectorUi();
 
+            Block block = (Block)serializedObject.targetObject;
+            int length = _horizontalLengthProperty.intValue;
+            bool leftEndingEnabled = _leftEndingEnabledProperty.boolValue;
+            bool rightEndingEnabled = _rightEndingEnabledProperty.boolValue;
+            bool topEndingEnabled = _topEndingEnabledProperty.boolValue;
+            GameObject atomPrefab = (GameObject)_blockAtomPrefabProperty.objectReferenceValue;
+
             if (_lengthValueChanged)
             {
-                ConstructAtoms();
+                ConstructAtoms(block, atomPrefab, length);
                 _lengthValueChanged = false;
-                MakeEndings();
+                MakeEndings(block, leftEndingEnabled, rightEndingEnabled, topEndingEnabled);
                 _endingValueChanged = false;
             }
 
             if (_endingValueChanged)
             {
-                MakeEndings();
+                MakeEndings(block, leftEndingEnabled, rightEndingEnabled, topEndingEnabled);
                 _endingValueChanged = false;
             }
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        [MenuItem("BlockEditor/Update blocks")]
+        static void DoSomething()
+        {
+            Debug.Log("Updating blocks");
+
+            Block[] blocks = GameObject.FindObjectsOfType<Block>();
+
+            foreach (var block in blocks)
+            {
+                int length = block.HorizontalLength;
+                bool leftEndingEnabled = block.LeftEndingEnabled;
+                bool rightEndingEnabled = block.RightEndingEnabled;
+                bool topEndingEnabled = block.TopEndingEnabled;
+                GameObject atomPrefab = block.BlockAtomPrefab;
+
+                ConstructAtoms(block, atomPrefab, length);
+                MakeEndings(block, leftEndingEnabled, rightEndingEnabled, topEndingEnabled);
+            }
         }
     }
 }
