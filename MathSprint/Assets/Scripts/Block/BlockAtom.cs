@@ -5,49 +5,63 @@ namespace Assets.Scripts.Block
     public class BlockAtom : MonoBehaviour
     {
 #pragma warning disable 649
-        [SerializeField] private Sprite _standardSprite;
         [SerializeField] private Sprite _leftEndingSprite;
         [SerializeField] private Sprite _rightEndingSprite;
         [SerializeField] private Sprite _bothEndingSprite;
+
+        [SerializeField] private Sprite _innerEndingSprite;
+
+        [SerializeField] private Sprite _topLeftEndingSprite;
+        [SerializeField] private Sprite _topRightEndingSprite;
+        [SerializeField] private Sprite _topBothEndingSprite;
+        [SerializeField] private Sprite _topOnlyEndingSprite;
 #pragma warning restore 649
 
         private SpriteRenderer _spriteRenderer;
 
-        public void SetLeftEnding()
+        public void SetEnding(bool top, bool left, bool right)
         {
-            if (_spriteRenderer == null)
+            LoadRenderer();
+            if (top && left && right)
             {
-                _spriteRenderer = GetComponent<SpriteRenderer>();
+                _spriteRenderer.sprite = _topBothEndingSprite;
             }
-
-            _spriteRenderer.sprite = _leftEndingSprite;
+            else if (top && left)
+            {
+                _spriteRenderer.sprite = _topLeftEndingSprite;
+            }
+            else if (top && right)
+            {
+                _spriteRenderer.sprite = _topRightEndingSprite;
+            }
+            else if (left && right)
+            {
+                _spriteRenderer.sprite = _bothEndingSprite;
+            }
+            else if (top)
+            {
+                _spriteRenderer.sprite = _topOnlyEndingSprite;
+            }
+            else if (left)
+            {
+                _spriteRenderer.sprite = _leftEndingSprite;
+            }
+            else if (right)
+            {
+                _spriteRenderer.sprite = _rightEndingSprite;
+            }
+            else
+            {
+                _spriteRenderer.sprite = _innerEndingSprite;
+            }
         }
 
-        public void SetRightEnding()
+        private void LoadRenderer()
         {
             if (_spriteRenderer == null)
             {
                 _spriteRenderer = GetComponent<SpriteRenderer>();
             }
-            _spriteRenderer.sprite = _rightEndingSprite;
-        }
-
-        public void SetBothEnding()
-        {
-            if (_spriteRenderer == null)
-            {
-                _spriteRenderer = GetComponent<SpriteRenderer>();
-            }
-            _spriteRenderer.sprite = _bothEndingSprite;
-        }
-
-        public void SetNoEnding()
-        {
-            if (_spriteRenderer == null)
-            {
-                _spriteRenderer = GetComponent<SpriteRenderer>();
-            }
-            _spriteRenderer.sprite = _standardSprite;
         }
 
         // Start is called before the first frame update

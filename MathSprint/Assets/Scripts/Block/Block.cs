@@ -11,6 +11,7 @@ namespace Assets.Scripts.Block
 
         [SerializeField] private bool _leftEndingEnabled;
         [SerializeField] private bool _rightEndingEnabled;
+        [SerializeField] private bool _topEndingEnabled;
 
         // Start is called before the first frame update
         void Start()

@@ -121,7 +121,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fc72e37fc1e37e48b76754255008d36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _standardSprite: {fileID: 21300000, guid: 236e081eb7692cd4e82dd898af9f8673, type: 3}
-  _leftEndingSprite: {fileID: 21300000, guid: e9e016f07ef9dfb4c9266a00866fb158, type: 3}
-  _rightEndingSprite: {fileID: 21300000, guid: c73f6711090b35f47b3aee99c3e5f539, type: 3}
-  _bothEndingSprite: {fileID: 21300000, guid: 7ee8b6909ebc60c46b66b91edd5a4134, type: 3}
+  _leftEndingSprite: {fileID: 21300000, guid: b4ef70bced6c2b64ea15557e4f129ef9, type: 3}
+  _rightEndingSprite: {fileID: 21300000, guid: dd81eb11c231af742a3fa805e7f192ff, type: 3}
+  _bothEndingSprite: {fileID: 21300000, guid: 2bfd2c77c045f2844af79a33ae05ec49, type: 3}
+  _innerEndingSprite: {fileID: 21300000, guid: d2de123debc7a5d499239bae8f5db762, type: 3}
+  _topLeftEndingSprite: {fileID: 21300000, guid: e9e016f07ef9dfb4c9266a00866fb158,
+    type: 3}
+  _topRightEndingSprite: {fileID: 21300000, guid: c73f6711090b35f47b3aee99c3e5f539,
+    type: 3}
+  _topBothEndingSprite: {fileID: 21300000, guid: 7ee8b6909ebc60c46b66b91edd5a4134,
+    type: 3}
+  _topOnlyEndingSprite: {fileID: 21300000, guid: 236e081eb7692cd4e82dd898af9f8673,
+    type: 3}

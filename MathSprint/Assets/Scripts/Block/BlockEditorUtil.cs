@@ -11,6 +11,7 @@ namespace Assets.Scripts.Block
         private SerializedProperty _blockAtomPrefabProperty;
         private SerializedProperty _leftEndingEnabledProperty;
         private SerializedProperty _rightEndingEnabledProperty;
+        private SerializedProperty _topEndingEnabledProperty;
 
         private bool _lengthValueChanged = false;
         private bool _endingValueChanged = false;
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Block
             _blockAtomPrefabProperty = serializedObject.FindProperty("_blockAtomPrefab");
             _leftEndingEnabledProperty = serializedObject.FindProperty("_leftEndingEnabled");
             _rightEndingEnabledProperty = serializedObject.FindProperty("_rightEndingEnabled");
+            _topEndingEnabledProperty = serializedObject.FindProperty("_topEndingEnabled");
         }
 
         private void ClearChildren(Transform parent)
@@ -82,7 +84,9 @@ namespace Assets.Scripts.Block
 
             for (int i = 0; i < length; i++)
             {
-                GameObject atomInstance = Instantiate(atomPrefab, block.transform);
+                //GameObject atomInstance = Instantiate(atomPrefab, block.transform);
+                GameObject atomInstance = (GameObject) PrefabUtility.InstantiatePrefab(atomReference);
+                atomInstance.transform.parent = block.transform;
                 atomInstance.transform.localPosition = Vector3.right * i;
                 atomInstance.name = $"BlockAtom#{i}";
             }
@@ -98,6 +102,7 @@ namespace Assets.Scripts.Block
 
             bool leftEndingEnabled = _leftEndingEnabledProperty.boolValue;
             bool rightEndingEnabled = _rightEndingEnabledProperty.boolValue;
+            bool topEndingEnabled = _topEndingEnabledProperty.boolValue;
 
 
             if (childCount == 0)
@@ -109,22 +114,7 @@ namespace Assets.Scripts.Block
                 Transform childTransform = block.transform.GetChild(0);
                 GameObject childGo = childTransform.gameObject;
                 BlockAtom atom = childGo.GetComponent<BlockAtom>();
-                if (leftEndingEnabled && rightEndingEnabled)
-                {
-                    atom.SetBothEnding();
-                }
-                else if (leftEndingEnabled)
-                {
-                    atom.SetLeftEnding();
-                }
-                else if (rightEndingEnabled)
-                {
-                    atom.SetRightEnding();
-                }
-                else
-                {
-                    atom.SetNoEnding();
-                }
+                atom.SetEnding(topEndingEnabled, leftEndingEnabled, rightEndingEnabled);
             }
             else
             {
@@ -135,22 +125,16 @@ namespace Assets.Scripts.Block
                 GameObject childRightGo = childRightTransform.gameObject;
                 BlockAtom atomRight = childRightGo.GetComponent<BlockAtom>();
 
-                if (leftEndingEnabled)
-                {
-                    atomLeft.SetLeftEnding();
-                }
-                else
-                {
-                    atomLeft.SetNoEnding();
-                }
+                atomLeft.SetEnding(topEndingEnabled, leftEndingEnabled, false);
+                atomRight.SetEnding(topEndingEnabled, false, rightEndingEnabled);
 
-                if (rightEndingEnabled)
+                for (int i = 1; i < childCount - 1; i++)
                 {
-                    atomRight.SetRightEnding();
-                }
-                else
-                {
-                    atomRight.SetNoEnding();
+                    Transform transform = block.transform.GetChild(i);
+                    GameObject go = transform.gameObject;
+                    BlockAtom atom = go.GetComponent<BlockAtom>();
+
+                    atom.SetEnding(topEndingEnabled, false, false);
                 }
             }
         }
@@ -180,6 +164,13 @@ namespace Assets.Scripts.Block
                 _endingValueChanged = true;
             }
             _rightEndingEnabledProperty.boolValue = rightEndingEnabled;
+
+            bool topEndingEnabled = EditorGUILayout.Toggle("Enable top ending", _topEndingEnabledProperty.boolValue);
+            if (topEndingEnabled != _topEndingEnabledProperty.boolValue)
+            {
+                _endingValueChanged = true;
+            }
+            _topEndingEnabledProperty.boolValue = topEndingEnabled;
 
             EditorGUILayout.PropertyField(_blockAtomPrefabProperty, new GUIContent("Block atom prefab"));
         }
