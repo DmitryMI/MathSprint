@@ -77,6 +77,12 @@ namespace Assets.Scripts.Block
                 atomInstance.transform.localPosition = Vector3.right * i;
                 atomInstance.name = $"BlockAtom#{i}";
             }
+
+            BoxCollider2D collider2D = (BoxCollider2D)block.GetComponent<Collider2D>();
+            Vector2 colliderSize = new Vector2(length, 1);
+            Vector2 offset = new Vector2(length / 2.0f - 0.5f, 0);
+            collider2D.size = colliderSize;
+            collider2D.offset = offset;
         }
 
         private static void MakeEndings(Block block, bool leftEndingEnabled, bool rightEndingEnabled, bool topEndingEnabled)
