@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Assets.Scripts.Behaviour;
+﻿using Assets.Scripts.Behaviour;
 using UnityEngine;
 
-namespace Assets.Scripts.EntityControls
+namespace Assets.Scripts.EntityControls.User
 {
     public class PlayerInputManager : IUpdateable, IInputManager
     {
@@ -42,7 +37,7 @@ namespace Assets.Scripts.EntityControls
             float vertical = Input.GetAxis("Vertical");
             float jump = Input.GetAxis("Jump");
 
-            _playerControllable?.OnPlayerInput(horizontal, vertical, jump);
+            _playerControllable?.OnControlInput(horizontal, vertical, jump);
         }
     }
 }

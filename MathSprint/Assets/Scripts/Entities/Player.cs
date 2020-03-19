@@ -121,7 +121,7 @@ namespace Assets.Scripts.Entities
             
         }
 
-        public void OnPlayerInput(float horizontal, float vertical, float jump)
+        public void OnControlInput(float horizontal, float vertical, float jump)
         {
             if (_rigidbody2D == null)
             {

@@ -2,6 +2,6 @@
 {
     public interface IControllable
     {
-        void OnPlayerInput(float horizontal, float vertical, float jump);
+        void OnControlInput(float horizontal, float vertical, float jump);
     }
 }
