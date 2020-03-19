@@ -12,12 +12,13 @@ namespace Assets.Scripts.Entities
         private float _acceleration;
         [SerializeField] private float _airCoefficient;
         [SerializeField] private float _jumpForce;
+        [SerializeField]
+        private bool _isGrounded;
 
         private Rigidbody2D _rigidbody2D;
         private Collider2D _collider2D;
-
-        [SerializeField]
-        private bool _isGrounded;
+        private Animator _animator;
+        private SpriteRenderer _spriteRenderer;
 
         private Transform _colliderBottomMarker;
 
@@ -59,6 +60,10 @@ namespace Assets.Scripts.Entities
             _collider2D = GetComponent<Collider2D>();
 
             _colliderBottomMarker = transform.Find("ColliderBottom");
+            _animator = GetComponent<Animator>();
+
+            GameObject body = transform.Find("Body").gameObject;
+            _spriteRenderer = body.GetComponent<SpriteRenderer>();
         }
 
         private void Start()
@@ -66,6 +71,48 @@ namespace Assets.Scripts.Entities
             RegisterUpdateable();
             RegisterControllable();
             InitComponents();
+        }
+
+        private void Animate(int direction, bool running, bool jumping)
+        {
+            if (direction == -1)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+            }
+
+            _animator.SetBool("Jumping", jumping);
+            _animator.SetInteger("Running",running ? 1 : 0);
+        }
+
+        private void AnimateDirection(float direction)
+        {
+            if (direction < 0)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                _spriteRenderer.flipX = false;
+            }
+        }
+
+        private void AnimateRunning(bool running)
+        {
+            _animator.SetInteger("Running", running ? 1 : 0);
+        }
+
+        private void AnimateJumping(bool jumping)
+        {
+            _animator.SetBool("Jumping", jumping);
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            AnimateJumping(false);
         }
 
 
@@ -85,15 +132,18 @@ namespace Assets.Scripts.Entities
             float velocity2 = horizontalProjection * horizontalProjection;
             int direction = Math.Sign(horizontalProjection);
 
+            AnimateDirection(horizontal);
+
             if (Math.Abs(horizontal) < 0.001f)
             {
+                AnimateRunning(false);
                 float velocityStopperValue = Math.Abs(horizontalProjection * 10);
                 Vector2 stoppingForce = -direction * Vector2.right * velocityStopperValue * _airCoefficient / _rigidbody2D.mass;
                 _rigidbody2D.AddForce(stoppingForce);
             }
             else
             {
-                
+                AnimateRunning(true);
                 float movementForce = horizontal * _acceleration - direction * 
                                       _airCoefficient * velocity2 / _rigidbody2D.mass;
                 _rigidbody2D.AddForce(Vector2.right * movementForce);
@@ -111,6 +161,7 @@ namespace Assets.Scripts.Entities
                 position.y += 0.03f;
                 gameObject.transform.position = position;
                 _rigidbody2D.AddForce(jumpVector, ForceMode2D.Impulse);
+                AnimateJumping(true);
             }
         }
     }
