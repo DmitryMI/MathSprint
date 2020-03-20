@@ -8,6 +8,11 @@ namespace Assets.Scripts.Entities
 {
     public class Player : MonoBehaviour, IUpdateable, IControllable
     {
+        #region Singleton
+        private static Player _instance;
+        public static Player Instance => _instance;
+        #endregion
+
         [SerializeField]
         private float _acceleration;
         [SerializeField] private float _airCoefficient;
@@ -68,6 +73,7 @@ namespace Assets.Scripts.Entities
 
         private void Start()
         {
+            _instance = this;
             RegisterUpdateable();
             RegisterControllable();
             InitComponents();

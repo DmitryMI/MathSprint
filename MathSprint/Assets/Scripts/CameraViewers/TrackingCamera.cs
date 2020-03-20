@@ -6,7 +6,9 @@ namespace Assets.Scripts.CameraViewers
     public class TrackingCamera : MonoBehaviour, IUpdateable
     {
         [SerializeField]
+#pragma warning disable 649
         private Transform _viewedObject;
+#pragma warning restore 649
 
         [SerializeField]
         private float _cameraZ = 10.0f;
