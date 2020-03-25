@@ -22,6 +22,8 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
       working-directory: ${{env.working-directory}}
+    - name: SetupNuget
+      uses: NuGet/setup-nuget@v1.0.2
     - name: Restore MainLib
       run: nuget restore MethodsLib.sln
       working-directory: ${{env.working-directory}}
