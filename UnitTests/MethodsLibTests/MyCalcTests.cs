@@ -23,7 +23,7 @@ namespace MethodsLib.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        /*
+        
         // Этот должен быть отрицательным
         [TestMethod]
         public void TestMethod2()
@@ -40,6 +40,46 @@ namespace MethodsLib.Tests
             // assert
             Assert.AreEqual(expected, actual);
         }
-        */
+
+        // Должен быть положительным
+        [TestMethod]
+        public void TestMethod3()
+        {
+            // arrange
+            int x = 10;
+            int y = 20;
+            int expected = 30;
+
+            // act
+            MyCalc c = new MyCalc();
+            int actual = c.Sum(x, y);
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+
+
     }
+
+    [TestClass]
+    public class MyAnotherTestClass
+    {
+        // Должен быть положительным
+        [TestMethod]
+        public void TestMethod3()
+        {
+            // arrange
+            int x = 10;
+            int y = 20;
+            int expected = 30;
+
+            // act
+            MyCalc c = new MyCalc();
+            int actual = c.Sum(x, y);
+
+            // assert
+            Assert.AreEqual(expected, actual);
+        }
+    }
+
 }
