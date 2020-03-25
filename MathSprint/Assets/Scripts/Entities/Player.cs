@@ -13,12 +13,15 @@ namespace Assets.Scripts.Entities
         public static Player Instance => _instance;
         #endregion
 
+#pragma warning disable 649
         [SerializeField]
         private float _acceleration;
+
         [SerializeField] private float _airCoefficient;
         [SerializeField] private float _jumpForce;
         [SerializeField]
         private bool _isGrounded;
+#pragma warning restore 649
 
         private Rigidbody2D _rigidbody2D;
         private Collider2D _collider2D;

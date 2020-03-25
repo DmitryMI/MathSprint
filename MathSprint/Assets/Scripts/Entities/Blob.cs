@@ -1,10 +1,13 @@
 ﻿using Assets.Scripts.Behaviour;
 using Assets.Scripts.EntityControls.Mob;
+using Assets.Scripts.Game;
+using Assets.Scripts.MathTrials;
+using Assets.Scripts.MathTrials.Exercises;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
 {
-    public class Blob : MonoBehaviour, IPointControllable, IUpdateable
+    public class Blob : Mob, IPointControllable, IUpdateable
     {
         [SerializeField]
 #pragma warning disable 649
@@ -34,6 +37,8 @@ namespace Assets.Scripts.Entities
             Transform body = transform.Find("Body");
             _spriteRenderer = body.gameObject.GetComponent<SpriteRenderer>();
             _animator = GetComponent<Animator>();
+
+            GameManager.Instance.OnGamePause += OnGamePause;
         }
 
         public void OnControlInput(Vector2 targetPoint)
@@ -70,10 +75,31 @@ namespace Assets.Scripts.Entities
             _rigidbody2d.velocity = Vector2.zero;
         }
 
+        private void OnGamePause(bool pause)
+        {
+            if(_rigidbody2d == null)
+                return;
+            if (pause)
+            {
+                _rigidbody2d.constraints |= RigidbodyConstraints2D.FreezeAll;
+            }
+            else
+            {
+                _rigidbody2d.constraints = RigidbodyConstraints2D.FreezeRotation;
+            }
+        }
+
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            AnimateJumping(false);
-            ApplyStoppingForce();
+            if (collision.gameObject.tag.Equals("Player"))
+            {
+                MathTrialManager.Instance.RequestMathTrial(this);
+            }
+            else
+            {
+                AnimateJumping(false);
+                ApplyStoppingForce();
+            }
         }
 
         private void AnimateDirection(int direction)
@@ -111,6 +137,14 @@ namespace Assets.Scripts.Entities
             }
 
             _jumpCooldownCounter = _jumpCooldownSeconds;
+        }
+
+        public override IExercise Exercise { get; }
+
+
+        void OnDestroy()
+        {
+            BehaviourManager.Instance.Remove(this);
         }
     }
 }

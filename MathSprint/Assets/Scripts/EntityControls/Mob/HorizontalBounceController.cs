@@ -56,5 +56,10 @@ namespace Assets.Scripts.EntityControls.Mob
             }
             _mob.OnControlInput(horizontal, 0, 0);
         }
+
+        void OnDestroy()
+        {
+            BehaviourManager.Instance.Remove(this);
+        }
     }
 }

@@ -12,7 +12,9 @@ namespace Assets.Scripts.EntityControls.Mob
     public class BlobController : MonoBehaviour, IUpdateable
     {
         [SerializeField]
+#pragma warning disable 649
         private float _reactionDistance;
+#pragma warning restore 649
 
         private IPointControllable _mob;
         private float _reactionDistance2;
@@ -41,6 +43,11 @@ namespace Assets.Scripts.EntityControls.Mob
             {
                 _mob.OnControlInput(playerPosition);
             }
+        }
+
+        void OnDestroy()
+        {
+            BehaviourManager.Instance.Remove(this);
         }
     }
 }

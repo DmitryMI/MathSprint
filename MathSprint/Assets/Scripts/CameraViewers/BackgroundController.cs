@@ -15,6 +15,7 @@ namespace Assets.Scripts.CameraViewers
 
         #endregion
 
+#pragma warning disable 649
         [SerializeField]
         private Sprite _backgroundTileSprite;
 
@@ -22,6 +23,7 @@ namespace Assets.Scripts.CameraViewers
 
         [SerializeField]
         private float _relativeSpeed;
+#pragma warning restore 649
 
         [SerializeField] private Bounds _playableZoneBounds;
 
