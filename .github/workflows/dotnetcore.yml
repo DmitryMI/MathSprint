@@ -22,7 +22,7 @@ jobs:
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.0.2
     - name: Restore NuGet packages
-      run: nuget resotre
+      run: nuget restore
     - name: Install dependencies
       run: dotnet restore
       working-directory: ${{env.working-directory}}
