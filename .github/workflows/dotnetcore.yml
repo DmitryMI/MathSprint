@@ -19,15 +19,11 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 3.1.101
-    - name: Setup NuGet
-      uses: NuGet/setup-nuget@v1.0.2
-    - name: Restore NuGet packages
-      run: nuget restore
     - name: Install dependencies
       run: dotnet restore
       working-directory: ${{env.working-directory}}
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build --configuration Release
       working-directory: ${{env.working-directory}}
     - name: Test
       run: dotnet test --no-restore --verbosity normal
