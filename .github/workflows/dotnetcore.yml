@@ -32,5 +32,5 @@ jobs:
       run: dotnet build --configuration Release
       working-directory: ${{env.working-directory}}
     - name: Test
-      run: dotnet test --no-restore --verbosity normal
-      working-directory: ${{env.Tests}}
+      run: dotnet test --no-restore --verbosity normal --list-tests
+      working-directory: ${{env.working-directory}}
