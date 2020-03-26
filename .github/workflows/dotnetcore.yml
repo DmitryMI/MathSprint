@@ -32,4 +32,4 @@ jobs:
       working-directory: ${{env.working-directory}}
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      working-directory: ${{env.working-directory}}
+      working-directory: ./UnitTests/MethodsLibTests
