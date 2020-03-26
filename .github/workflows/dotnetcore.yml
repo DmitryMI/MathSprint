@@ -12,6 +12,7 @@ jobs:
     runs-on: windows-latest
     env:
       working-directory: ./UnitTests/MethodsLib
+      Tests: ./UnitTests/MethodsLibTests/MethodsLibTests.csproj
 
     steps:
     - uses: actions/checkout@v2
@@ -32,4 +33,4 @@ jobs:
       working-directory: ${{env.working-directory}}
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      working-directory: ./UnitTests/MethodsLibTests/MethodsLibTests.csproj
+      working-directory: ${{env.Tests}}
