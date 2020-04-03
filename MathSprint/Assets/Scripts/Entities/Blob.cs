@@ -71,6 +71,18 @@ namespace Assets.Scripts.Entities
 
             transform.position += Vector3.up * 0.01f;
 
+            float force = deltaX * _forwardForce;
+
+            if (force > _forwardForce)
+            {
+                force = _forwardForce;
+            }
+
+            if (force < -_forwardForce)
+            {
+                force = -_forwardForce;
+            }
+
             Vector2 forwardForce = new Vector2(deltaX * _forwardForce, 0);
             _rigidbody2d.AddForce(forwardForce, ForceMode2D.Force);
 
@@ -147,6 +159,11 @@ namespace Assets.Scripts.Entities
             }
 
             _jumpCooldownCounter = _jumpCooldownSeconds;
+
+            if (transform.position.y < GameManager.Instance.MinY)
+            {
+                Destroy(gameObject);
+            }
         }
 
         public override IExercise Exercise => _currentExercise;

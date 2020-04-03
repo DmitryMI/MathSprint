@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Entities;
 using Assets.Scripts.Game;
 using Assets.Scripts.MathTrials.Exercises;
@@ -18,11 +19,14 @@ namespace Assets.Scripts.MathTrials
 
 #pragma warning disable 649
         [SerializeField] private ExerciseDrawer _exerciseDrawerInstance;
+        [SerializeField] private float _invulnerabilityDuration;
 #pragma warning restore 649
 
         private IExercise[] _availibleExercises;
 
         private Mob _pendingMob;
+
+        private bool _temporaryInvulnerable;
 
         void Start()
         {
@@ -59,10 +63,14 @@ namespace Assets.Scripts.MathTrials
         public void RequestMathTrial(Mob sourceMob)
         {
             Debug.Log("MathTrial requested");
+            if (_temporaryInvulnerable)
+            {
+                return;
+            }
+            SetInvulnerable(true);
+
             IExercise exercise = sourceMob.Exercise;
-
             _pendingMob = sourceMob;
-
             GameManager.Instance.RequestGamePause(true);
             ShowExercise(exercise);
         }
@@ -72,6 +80,23 @@ namespace Assets.Scripts.MathTrials
             _exerciseDrawerInstance?.ShowExercise(OnExerciseAnswer, exercise);
         }
 
+        private IEnumerator DisableInvulnerabilitySubroutine()
+        {
+            yield return new WaitForSeconds(_invulnerabilityDuration);
+            SetInvulnerable(false);
+        }
+
+        private void SetInvulnerable(bool invulnerable)
+        {
+            _temporaryInvulnerable = invulnerable;
+            Player.Instance.AnimateBlinking(invulnerable);
+        }
+
+        private void StartInvulnerabilityCountdown()
+        {
+            StartCoroutine(DisableInvulnerabilitySubroutine());
+        }
+
         public void OnExerciseAnswer(bool correct)
         {
             Debug.Log($"Exercise answered. Is correct: {correct}");
@@ -79,6 +104,7 @@ namespace Assets.Scripts.MathTrials
             GameManager.Instance.RequestGamePause(false);
             _pendingMob.MathTrialComplete(correct);
             _pendingMob = null;
+            StartInvulnerabilityCountdown();
         }
     }
 }

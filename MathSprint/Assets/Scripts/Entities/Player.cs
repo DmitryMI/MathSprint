@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using Assets.Scripts.Behaviour;
 using Assets.Scripts.EntityControls;
+using Assets.Scripts.Game;
 using UnityEngine;
 
 
@@ -29,6 +32,9 @@ namespace Assets.Scripts.Entities
         private SpriteRenderer _spriteRenderer;
 
         private Transform _colliderBottomMarker;
+
+        [SerializeField]
+        private bool _invulnerabilityAnimation;
 
         private void RegisterUpdateable()
         {
@@ -124,10 +130,50 @@ namespace Assets.Scripts.Entities
             AnimateJumping(false);
         }
 
+        public void AnimateBlinking(bool blinking)
+        {
+            _invulnerabilityAnimation = blinking;
+            if(blinking)
+            { 
+                StartCoroutine(BlinkCoroutine());
+            }
+        }
+
+        private void SetTransparency(float alpha)
+        {
+            Color color = _spriteRenderer.color;
+            color.a = alpha;
+            _spriteRenderer.color = color;
+        }
+
+        private IEnumerator BlinkCoroutine()
+        {
+            bool state = false;
+            while (_invulnerabilityAnimation)
+            {
+                yield return new WaitForSeconds(0.1f);
+                if (state)
+                {
+                    SetTransparency(0.2f);
+                }
+                else
+                {
+                    SetTransparency(1);
+                }
+
+                state = !state;
+            }
+            SetTransparency(1);
+        }
+
 
         public void OnUpdate()
         {
-            
+            if (transform.position.y < GameManager.Instance.MinY)
+            {
+                GameManager.Instance.RequestDamage(Int32.MaxValue);
+            }
+            //_animator.SetBool("Blinking", _invulnerabilityAnimation);
         }
 
         public void OnControlInput(float horizontal, float vertical, float jump)

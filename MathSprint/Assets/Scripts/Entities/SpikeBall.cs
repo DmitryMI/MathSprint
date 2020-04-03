@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entities
 {
-    public class SpikeBall : Mob, ICollisionMob
+    public class SpikeBall : Mob, ICollisionMob, IUpdateable
     {
         [SerializeField]
 #pragma warning disable 649
@@ -34,6 +34,7 @@ namespace Assets.Scripts.Entities
             _animator = GetComponent<Animator>();
 
             GameManager.Instance.OnGamePause += OnGamePause;
+            BehaviourManager.Instance.Add(this);
 
             _exercises = MathTrialManager.Instance.GetExercisesByName("SpikeBall");
             _currentExercise = ArrayUtils.GetRandomItem(_exercises);
@@ -83,7 +84,15 @@ namespace Assets.Scripts.Entities
 
         void OnDestroy()
         {
-            
+            BehaviourManager.Instance.Remove(this);
+        }
+
+        public void OnUpdate()
+        {
+            if (transform.position.y < GameManager.Instance.MinY)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }

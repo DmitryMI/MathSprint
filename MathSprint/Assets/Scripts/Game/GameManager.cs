@@ -22,6 +22,10 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private int _lifeCount;
 
+        [SerializeField] private float _minY;
+
+        public float MinY => _minY;
+
         void Start()
         {
             _instance = this;
@@ -40,12 +44,17 @@ namespace Assets.Scripts.Game
         public void RequestDamage(int damage)
         {
             _lifeCount -= damage;
-            OnLifeCountChanged?.Invoke(_lifeCount);
 
-            if (_lifeCount <= 0)
+            if (_lifeCount < 0)
             {
                 _lifeCount = 0;
-                OnLifeZero();
+            }
+
+            OnLifeCountChanged?.Invoke(_lifeCount);
+
+            if (_lifeCount == 0)
+            {
+                OnLifeZero(); 
             }
         }
 
@@ -71,7 +80,10 @@ namespace Assets.Scripts.Game
 
         private void OnLifeZero()
         {
-
+            // TODO GameOver splash
+            Debug.Log("Game over!");
+            RequestGamePause(true);
+            Application.Quit();
         }
     }
 }
