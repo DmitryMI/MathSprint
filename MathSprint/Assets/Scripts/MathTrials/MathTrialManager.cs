@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.Entities;
+﻿using System.Collections.Generic;
+using Assets.Scripts.Entities;
 using Assets.Scripts.Game;
 using Assets.Scripts.MathTrials.Exercises;
 using Assets.Scripts.UserInterface.InGame;
@@ -19,6 +20,8 @@ namespace Assets.Scripts.MathTrials
         [SerializeField] private ExerciseDrawer _exerciseDrawerInstance;
 #pragma warning restore 649
 
+        private IExercise[] _availibleExercises;
+
         private Mob _pendingMob;
 
         void Start()
@@ -29,6 +32,28 @@ namespace Assets.Scripts.MathTrials
             {
                 Debug.LogError("ExerciseDrawerInstance not assigned");
             }
+
+            _availibleExercises = ExercisesLoader.LoadFromResources();
+
+            foreach (var exercise in _availibleExercises)
+            {
+                Debug.Log("Exercise loaded: " + exercise.Name);
+            }
+        }
+
+        public IExercise[] GetExercisesByName(string nameStart)
+        {
+            List<IExercise> exercises = new List<IExercise>();
+
+            foreach (var exercise in _availibleExercises)
+            {
+                if (exercise.Name.StartsWith(nameStart))
+                {
+                    exercises.Add(exercise);
+                }
+            }
+
+            return exercises.ToArray();
         }
 
         public void RequestMathTrial(Mob sourceMob)
@@ -49,7 +74,7 @@ namespace Assets.Scripts.MathTrials
 
         public void OnExerciseAnswer(bool correct)
         {
-            Debug.Log("Exercise answered");
+            Debug.Log($"Exercise answered. Is correct: {correct}");
             _exerciseDrawerInstance.Hide();
             GameManager.Instance.RequestGamePause(false);
             _pendingMob.MathTrialComplete(correct);

@@ -5,6 +5,7 @@ using Assets.Scripts.EntityControls.Mob;
 using Assets.Scripts.Game;
 using Assets.Scripts.MathTrials;
 using Assets.Scripts.MathTrials.Exercises;
+using Assets.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
@@ -12,12 +13,18 @@ namespace Assets.Scripts.Entities
     public class SpikeBall : Mob, ICollisionMob
     {
         [SerializeField]
+#pragma warning disable 649
         private float _speed;
+#pragma warning restore 649
 
         private Rigidbody2D _rigidbody2D;
 
         private Action<Collision2D> _collisionHandler;
         private Animator _animator;
+
+        private IExercise[] _exercises;
+
+        private IExercise _currentExercise;
 
         public event Action<Collision2D> CollisionEnterEvent;
 
@@ -27,6 +34,11 @@ namespace Assets.Scripts.Entities
             _animator = GetComponent<Animator>();
 
             GameManager.Instance.OnGamePause += OnGamePause;
+
+            _exercises = MathTrialManager.Instance.GetExercisesByName("SpikeBall");
+            _currentExercise = ArrayUtils.GetRandomItem(_exercises);
+
+            Debug.Log($"{gameObject.name}: setting exercise to {_currentExercise.Name}");
         }
 
         public void OnControlInput(float horizontal, float vertical, float jump)
@@ -51,7 +63,7 @@ namespace Assets.Scripts.Entities
         }
 
         public Collider2D Collider2D => GetComponent<Collider2D>();
-        public override IExercise Exercise { get; }
+        public override IExercise Exercise => _currentExercise;
 
         private void OnGamePause(bool pause)
         {

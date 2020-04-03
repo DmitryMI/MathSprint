@@ -3,6 +3,7 @@ using Assets.Scripts.EntityControls.Mob;
 using Assets.Scripts.Game;
 using Assets.Scripts.MathTrials;
 using Assets.Scripts.MathTrials.Exercises;
+using Assets.Scripts.Utils;
 using UnityEngine;
 
 namespace Assets.Scripts.Entities
@@ -27,6 +28,10 @@ namespace Assets.Scripts.Entities
         private SpriteRenderer _spriteRenderer;
         private Animator _animator;
 
+        private IExercise[] _exercises;
+
+        private IExercise _currentExercise;
+
         public Vector2 CurrentPosition => transform.position;
 
         void Start()
@@ -39,6 +44,11 @@ namespace Assets.Scripts.Entities
             _animator = GetComponent<Animator>();
 
             GameManager.Instance.OnGamePause += OnGamePause;
+
+            _exercises = MathTrialManager.Instance.GetExercisesByName("Blob");
+            _currentExercise = ArrayUtils.GetRandomItem(_exercises);
+
+            Debug.Log($"{gameObject.name}: setting exercise to {_currentExercise.Name}");
         }
 
         public void OnControlInput(Vector2 targetPoint)
@@ -139,7 +149,7 @@ namespace Assets.Scripts.Entities
             _jumpCooldownCounter = _jumpCooldownSeconds;
         }
 
-        public override IExercise Exercise { get; }
+        public override IExercise Exercise => _currentExercise;
 
 
         void OnDestroy()
