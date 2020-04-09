@@ -1,5 +1,5 @@
 <Exercise>
 	<Image>SpikeBall1</Image>
-	<Text>Example text for SpikeBall1. Correct answer is 1</Text>
-	<Answer>1</Answer>
+	<Text>Вычислить определенный интеграл. Совет - воспользуйтесь заменной переменных. Ответ округлите до 1 знака после запятой.</Text>
+	<Answer>6.2</Answer>
 </Exercise>
