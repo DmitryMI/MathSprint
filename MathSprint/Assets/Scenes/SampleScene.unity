@@ -8393,42 +8393,47 @@ PrefabInstance:
     - target: {fileID: 6738952575296701008, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.03814251
+      value: 0.0332285
       objectReference: {fileID: 0}
     - target: {fileID: 6738952575296701008, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0.9566102
+      value: 0.95480514
       objectReference: {fileID: 0}
     - target: {fileID: 6738952575296701008, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -3.2299805
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738952575296701008, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738952575296701008, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 2.4500122
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738952575296701008, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 2.899994
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6738952575296701008, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0.20946571
+      value: 0.20400001
       objectReference: {fileID: 0}
     - target: {fileID: 6738952575296701008, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0.49631447
+      objectReference: {fileID: 0}
+    - target: {fileID: 6738952575296701011, guid: 194921c8df66e7f47af917f0cca92dc7,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6738952575721731563, guid: 194921c8df66e7f47af917f0cca92dc7,
         type: 3}
