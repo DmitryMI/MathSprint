@@ -15,14 +15,24 @@ namespace Assets.Scripts.UserInterface.InGame
         [SerializeField] private InputField _inputField;
 #pragma warning restore 649
 
+        private Vector2 _imageDrawerInitialSize;
+
         private IExercise _exercise;
         private Action<bool> _onAnswerCallback;
 
-        void Start()
+        private bool _initialized = false;
+
+        void DoInitialization()
         {
             if (_imageDrawer == null)
             {
                 Debug.LogError("ImageDrawer not assigned");
+            }
+            else
+            {
+                RectTransform imageDrawerRectTransform = _imageDrawer.GetComponent<RectTransform>();
+                Vector2 imageDrawerSize = imageDrawerRectTransform.rect.size;
+                _imageDrawerInitialSize = imageDrawerSize;
             }
             if (_textDrawer == null)
             {
@@ -40,6 +50,17 @@ namespace Assets.Scripts.UserInterface.InGame
             {
                 Debug.LogError("InputField not assigned");
             }
+
+            
+        }
+
+        void Start()
+        {
+            if (!_initialized)
+            {
+                DoInitialization();
+                _initialized = true;
+            }
         }
 
         public void SetCallback(Action<bool> onAnswer)
@@ -53,13 +74,61 @@ namespace Assets.Scripts.UserInterface.InGame
             ShowExercise(exercise);
         }
 
+        private void SetImageSprite(Sprite sprite)
+        {
+            GameObject drawerGameObject = _imageDrawer.gameObject;
+            RectTransform rectTransform = drawerGameObject.GetComponent<RectTransform>();
+            _imageDrawer.sprite = sprite;
+
+            if (sprite == null)
+            {
+                Debug.LogError("Sprite is null!");
+                return;
+            }
+
+            Vector2 textureSize = sprite.textureRect.size;
+
+            if (textureSize.y <= textureSize.x)
+            {
+                float widthRatio = _imageDrawerInitialSize.x / textureSize.x;
+                float nHeight = textureSize.y * widthRatio;
+                Vector2 drawerSizeNew = new Vector2(_imageDrawerInitialSize.x, nHeight);
+
+                float deltaX = (drawerSizeNew.x - _imageDrawerInitialSize.x);
+                float deltaY = (drawerSizeNew.y - _imageDrawerInitialSize.y);
+
+                Vector2 sizeDelta = new Vector2(deltaX, deltaY);
+
+                rectTransform.sizeDelta = sizeDelta;
+            }
+            else if (textureSize.y > textureSize.x)
+            {
+                float heightRatio = _imageDrawerInitialSize.y / textureSize.y;
+                float nWidth = textureSize.x * heightRatio;
+                Vector2 drawerSizeNew = new Vector2(nWidth, _imageDrawerInitialSize.y);
+
+                float deltaX = (drawerSizeNew.x - _imageDrawerInitialSize.x);
+                float deltaY = (drawerSizeNew.y - _imageDrawerInitialSize.y);
+
+                Vector2 sizeDelta = new Vector2(deltaX, deltaY);
+
+                rectTransform.sizeDelta = sizeDelta;
+            }
+        }
+
         public void ShowExercise(IExercise exercise)
         {
+            if (!_initialized)
+            {
+                DoInitialization();
+                _initialized = true;
+            }
+
             if (exercise != null)
             {
                 _exercise = exercise;
                 _textDrawer.text = exercise.Text;
-                _imageDrawer.sprite = exercise.Sprite;
+                SetImageSprite(exercise.Sprite);
             }
 
             gameObject.SetActive(true);
