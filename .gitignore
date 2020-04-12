@@ -354,3 +354,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+MathSprint/Assets/Resources/Exercises/Thumbs.db
+MathSprint/Assets/Resources/Exercises/Thumbs.db.meta
+MathSprint/Assets/Resources/Exercises/SpikeBall/Thumbs.db
+MathSprint/Assets/Resources/Exercises/SpikeBall/Thumbs.db
