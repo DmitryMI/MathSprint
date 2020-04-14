@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UserInterface.InGame
 {
+    /// <summary>
+    /// Handles Health UI
+    /// </summary>
     public class HealthDrawer : MonoBehaviour
     {
 

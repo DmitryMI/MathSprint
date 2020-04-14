@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityControls.Mob
 {
+    /// <summary>
+    /// Controller used to move mob between two walls
+    /// </summary>
     public class HorizontalBounceController : MonoBehaviour, IUpdateable
     {
         [SerializeField]

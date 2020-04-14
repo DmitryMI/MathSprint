@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Block
 {
+    /// <summary>
+    /// Unity editor script used to create surface automatically
+    /// </summary>
     [CustomEditor(typeof(Block))]
     public class BlockEditorUtil : Editor
     {
@@ -16,7 +19,7 @@ namespace Assets.Scripts.Block
         private bool _lengthValueChanged = false;
         private bool _endingValueChanged = false;
 
-        void OnEnable()
+        private void OnEnable()
         {
             _horizontalLengthProperty = serializedObject.FindProperty("_horizontalLength");
             _blockAtomPrefabProperty = serializedObject.FindProperty("_blockAtomPrefab");
@@ -162,6 +165,9 @@ namespace Assets.Scripts.Block
             EditorGUILayout.PropertyField(_blockAtomPrefabProperty, new GUIContent("Block atom prefab"));
         }
 
+        /// <summary>
+        /// Invoked by Unity engine
+        /// </summary>
         public override void OnInspectorGUI()
         {
             serializedObject.Update();
@@ -193,7 +199,7 @@ namespace Assets.Scripts.Block
         }
 
         [MenuItem("BlockEditor/Update blocks")]
-        static void DoSomething()
+        private static void DoSomething()
         {
             Debug.Log("Updating blocks");
 

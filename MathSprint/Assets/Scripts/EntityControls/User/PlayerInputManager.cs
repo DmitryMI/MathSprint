@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityControls.User
 {
+    /// <summary>
+    /// User's source of movement commands
+    /// </summary>
     public class PlayerInputManager : IUpdateable, IInputManager
     {
         private IControllable _playerControllable;

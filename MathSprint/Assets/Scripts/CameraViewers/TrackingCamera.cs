@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.CameraViewers
 {
+    /// <summary>
+    /// Camera's component to enable player tracking
+    /// </summary>
     public class TrackingCamera : MonoBehaviour, IUpdateable
     {
         [SerializeField]

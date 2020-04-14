@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts.UserInterface.InGame
 {
+    /// <summary>
+    /// Handles trial UI
+    /// </summary>
     public class ExerciseDrawer : MonoBehaviour
     {
 #pragma warning disable 649
@@ -22,7 +25,7 @@ namespace Assets.Scripts.UserInterface.InGame
 
         private bool _initialized = false;
 
-        void DoInitialization()
+        private void DoInitialization()
         {
             if (_imageDrawer == null)
             {
@@ -54,7 +57,7 @@ namespace Assets.Scripts.UserInterface.InGame
             
         }
 
-        void Start()
+        private void Start()
         {
             if (!_initialized)
             {
@@ -63,11 +66,20 @@ namespace Assets.Scripts.UserInterface.InGame
             }
         }
 
+        /// <summary>
+        /// Sets callback which is invoked on user input
+        /// </summary>
+        /// <param name="onAnswer">Callback action</param>
         public void SetCallback(Action<bool> onAnswer)
         {
             _onAnswerCallback = onAnswer;
         }
 
+        /// <summary>
+        /// Displays exercise to the player with specific callback
+        /// </summary>
+        /// <param name="onAnswer">Callback which is invoked on user input</param>
+        /// <param name="exercise">Exercise to show</param>
         public void ShowExercise(Action<bool> onAnswer, IExercise exercise)
         {
             SetCallback(onAnswer);
@@ -116,6 +128,10 @@ namespace Assets.Scripts.UserInterface.InGame
             }
         }
 
+        /// <summary>
+        /// Displays exercise to the player
+        /// </summary>
+        /// <param name="exercise">Exercise to show</param>
         public void ShowExercise(IExercise exercise)
         {
             if (!_initialized)
@@ -134,6 +150,9 @@ namespace Assets.Scripts.UserInterface.InGame
             gameObject.SetActive(true);
         }
 
+        /// <summary>
+        /// Hide exercise window
+        /// </summary>
         public void Hide()
         {
             gameObject.SetActive(false);

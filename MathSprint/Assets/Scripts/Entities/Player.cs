@@ -9,10 +9,16 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entities
 {
+    /// <summary>
+    /// Player component
+    /// </summary>
     public class Player : MonoBehaviour, IUpdateable, IControllable
     {
         #region Singleton
         private static Player _instance;
+        /// <summary>
+        /// Active Player instance (singleton)
+        /// </summary>
         public static Player Instance => _instance;
         #endregion
 
@@ -130,6 +136,10 @@ namespace Assets.Scripts.Entities
             AnimateJumping(false);
         }
 
+        /// <summary>
+        /// Starts blinking animation
+        /// </summary>
+        /// <param name="blinking">Is blinking enabled</param>
         public void AnimateBlinking(bool blinking)
         {
             _invulnerabilityAnimation = blinking;

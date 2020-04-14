@@ -10,6 +10,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entities
 {
+    /// <summary>
+    /// One of mob types. Dangerous killing machine
+    /// </summary>
     public class SpikeBall : Mob, ICollisionMob, IUpdateable
     {
         [SerializeField]
