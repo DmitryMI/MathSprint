@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entities
 {
+    /// <summary>
+    /// Base class for all NPC enemies in MathSprint
+    /// </summary>
     public abstract class Mob : MonoBehaviour
     {
         [SerializeField]
@@ -17,8 +20,16 @@ namespace Assets.Scripts.Entities
 #pragma warning restore 649
 
         protected int Damage => _damage;
+
+        /// <summary>
+        /// Mob's associated exercise
+        /// </summary>
         public abstract IExercise Exercise { get; }
 
+        /// <summary>
+        /// Default callback for MathTrial answer input
+        /// </summary>
+        /// <param name="answerCorrect">was user's answer correct</param>
         public virtual void MathTrialComplete(bool answerCorrect)
         {
             if (!answerCorrect)

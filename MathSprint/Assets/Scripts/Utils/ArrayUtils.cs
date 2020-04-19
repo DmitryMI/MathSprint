@@ -7,7 +7,9 @@ using Random = System.Random;
 
 namespace Assets.Scripts.Utils
 {
-    
+    /// <summary>
+    /// Set of utility functions for arrays
+    /// </summary>
     public static class ArrayUtils
     {
         private static Random _random = new Random();

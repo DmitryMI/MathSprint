@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Entities
 {
+    /// <summary>
+    /// One of mob types. Represents small and not dangerous slime
+    /// </summary>
     public class Blob : Mob, IPointControllable, IUpdateable
     {
         [SerializeField]

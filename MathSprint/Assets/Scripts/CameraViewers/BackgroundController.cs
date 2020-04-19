@@ -6,6 +6,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.CameraViewers
 {
+    /// <summary>
+    /// Manages background parallax
+    /// </summary>
     public class BackgroundController : MonoBehaviour, IUpdateable
     {
         #region Singleton
@@ -35,7 +38,7 @@ namespace Assets.Scripts.CameraViewers
         private const float OffsetZ = 10.0f;
 
         // Start is called before the first frame update
-        public void Start()
+        private void Start()
         {
             _instance = this;
 
@@ -59,6 +62,9 @@ namespace Assets.Scripts.CameraViewers
             transform.position += (Vector3)deltaScaled;
         }
 
+        /// <summary>
+        /// Is invoked from editor menu to generate background inside Unity
+        /// </summary>
         public void ConstructBackground()
         {
             float pixelPerUnit = _backgroundTileSprite.pixelsPerUnit;
@@ -101,6 +107,9 @@ namespace Assets.Scripts.CameraViewers
             transform.position = cameraPosition;
         }
 
+        /// <summary>
+        /// Unity menu button method
+        /// </summary>
         [MenuItem("Background/Construct background")]
         public static void ConstructBackgroundMenu()
         {

@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.Game
 {
+    /// <summary>
+    /// Manages game logic
+    /// </summary>
     public class GameManager : MonoBehaviour
     {
         #region Singleton
@@ -24,6 +27,9 @@ namespace Assets.Scripts.Game
 
         [SerializeField] private float _minY;
 
+        /// <summary>
+        /// Minimal Y coordinate of the map
+        /// </summary>
         public float MinY => _minY;
 
         void Start()
@@ -36,11 +42,24 @@ namespace Assets.Scripts.Game
             }
         }
 
+        /// <summary>
+        /// Event registry for Life count change
+        /// </summary>
         public event Action<int> OnLifeCountChanged;
+        /// <summary>
+        /// Event registry for game pause
+        /// </summary>
         public event Action<bool> OnGamePause;
 
+        /// <summary>
+        /// Player's lives
+        /// </summary>
         public int LifeCount => _lifeCount;
 
+        /// <summary>
+        /// Request damage dealing to current player
+        /// </summary>
+        /// <param name="damage"></param>
         public void RequestDamage(int damage)
         {
             _lifeCount -= damage;
@@ -58,11 +77,18 @@ namespace Assets.Scripts.Game
             }
         }
 
+        /// <summary>
+        /// Request net game level
+        /// </summary>
         public void RequestNextLevel()
         {
             // TODO Load next scene
         }
 
+        /// <summary>
+        /// Request game pause
+        /// </summary>
+        /// <param name="pause">true if pause, false if resume</param>
         public void RequestGamePause(bool pause)
         {
             OnGamePause?.Invoke(pause);
@@ -76,7 +102,6 @@ namespace Assets.Scripts.Game
             }
             // TODO Game pause
         }
-        
 
         private void OnLifeZero()
         {

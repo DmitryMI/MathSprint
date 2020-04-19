@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.MathTrials
 {
+    /// <summary>
+    /// Manages math trials
+    /// </summary>
     public class MathTrialManager : MonoBehaviour
     {
         #region Singleton
@@ -45,6 +48,11 @@ namespace Assets.Scripts.MathTrials
             }
         }
 
+        /// <summary>
+        /// Return exercise array that start with specified mask
+        /// </summary>
+        /// <param name="nameStart">Start-word mask</param>
+        /// <returns>Array of exercises</returns>
         public IExercise[] GetExercisesByName(string nameStart)
         {
             List<IExercise> exercises = new List<IExercise>();
@@ -60,6 +68,10 @@ namespace Assets.Scripts.MathTrials
             return exercises.ToArray();
         }
 
+        /// <summary>
+        /// Request staring trial for the player
+        /// </summary>
+        /// <param name="sourceMob">Requesting mob</param>
         public void RequestMathTrial(Mob sourceMob)
         {
             Debug.Log("MathTrial requested");
@@ -97,6 +109,10 @@ namespace Assets.Scripts.MathTrials
             StartCoroutine(DisableInvulnerabilitySubroutine());
         }
 
+        /// <summary>
+        /// Invoked by UI. Reports user's trial result
+        /// </summary>
+        /// <param name="correct">Is user's answer correct</param>
         public void OnExerciseAnswer(bool correct)
         {
             Debug.Log($"Exercise answered. Is correct: {correct}");

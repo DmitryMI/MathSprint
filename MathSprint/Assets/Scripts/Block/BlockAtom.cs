@@ -2,6 +2,9 @@
 
 namespace Assets.Scripts.Block
 {
+    /// <summary>
+    /// BlockAtoms are used to create surface inside Block's collider
+    /// </summary>
     public class BlockAtom : MonoBehaviour
     {
 #pragma warning disable 649
@@ -19,6 +22,12 @@ namespace Assets.Scripts.Block
 
         private SpriteRenderer _spriteRenderer;
 
+        /// <summary>
+        /// Modifies sprite renderer according to ending settings
+        /// </summary>
+        /// <param name="top">Is top ending enabled</param>
+        /// <param name="left">Is left ending enabled</param>
+        /// <param name="right">Is right ending enabled</param>
         public void SetEnding(bool top, bool left, bool right)
         {
             LoadRenderer();
@@ -65,7 +74,7 @@ namespace Assets.Scripts.Block
         }
 
         // Start is called before the first frame update
-        void Start()
+        private void Start()
         {
             if (_spriteRenderer == null)
             {

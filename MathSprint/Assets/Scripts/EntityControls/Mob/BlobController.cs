@@ -9,6 +9,9 @@ using UnityEngine;
 
 namespace Assets.Scripts.EntityControls.Mob
 {
+    /// <summary>
+    /// Default blob AI controller
+    /// </summary>
     public class BlobController : MonoBehaviour, IUpdateable
     {
         [SerializeField]

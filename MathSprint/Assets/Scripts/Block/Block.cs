@@ -2,6 +2,9 @@
 
 namespace Assets.Scripts.Block
 {
+    /// <summary>
+    /// Represents surface block
+    /// </summary>
     public class Block : MonoBehaviour
     {
 
@@ -14,26 +17,29 @@ namespace Assets.Scripts.Block
         [SerializeField] private bool _topEndingEnabled;
 #pragma warning restore 649
 
+        /// <summary>
+        /// Atom prefab. Will be cloned to match Block size
+        /// </summary>
         public GameObject BlockAtomPrefab => _blockAtomPrefab;
 
+        /// <summary>
+        /// Is left ending enabled
+        /// </summary>
         public bool LeftEndingEnabled => _leftEndingEnabled;
 
+        /// <summary>
+        /// Is right ending enabled
+        /// </summary>
         public bool RightEndingEnabled => _rightEndingEnabled;
 
+        /// <summary>
+        /// Is top ending enabled
+        /// </summary>
         public bool TopEndingEnabled => _topEndingEnabled;
 
+        /// <summary>
+        /// Length of atom sequence
+        /// </summary>
         public int HorizontalLength => _horizontalLength;
-
-        // Start is called before the first frame update
-        void Start()
-        {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
-        }
     }
 }
