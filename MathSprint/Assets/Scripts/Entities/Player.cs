@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Assets.Scripts.Behaviour;
 using Assets.Scripts.EntityControls;
+using Assets.Scripts.EntityControls.User;
 using Assets.Scripts.Game;
 using UnityEngine;
 
@@ -72,6 +73,7 @@ namespace Assets.Scripts.Entities
         {
             IInputManager inputManager = InputManagerBuilder.GetInstance();
             inputManager.PlayerControllable = this;
+            ((PlayerInputManager)inputManager).Init();
         }
 
         private void InitComponents()
@@ -182,6 +184,11 @@ namespace Assets.Scripts.Entities
             if (transform.position.y < GameManager.Instance.MinY)
             {
                 GameManager.Instance.RequestDamage(Int32.MaxValue);
+            }
+
+            if (_rigidbody2D.velocity.magnitude > 30)
+            {
+                _rigidbody2D.velocity = Vector2.zero;
             }
             //_animator.SetBool("Blinking", _invulnerabilityAnimation);
         }

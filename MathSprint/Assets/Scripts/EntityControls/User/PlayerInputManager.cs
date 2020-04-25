@@ -31,6 +31,11 @@ namespace Assets.Scripts.EntityControls.User
 
         public PlayerInputManager()
         {
+            
+        }
+
+        public void Init()
+        {
             RegisterUpdateable();
         }
 
