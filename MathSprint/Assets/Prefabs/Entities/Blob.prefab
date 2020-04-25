@@ -114,7 +114,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb99e50787f232409f50fafc4c66b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _damage: 0
   _jumpCooldownSeconds: 2
+  _forwardForce: 0
   _jumpingForce: 2
   _spriteFlipped: 1
 --- !u!114 &3357017737391151074
@@ -130,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _reactionDistance: 3
+  _activationTimeout: 2
 --- !u!1 &6441088605786584912
 GameObject:
   m_ObjectHideFlags: 0
