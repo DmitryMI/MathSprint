@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Assets.Scripts.Game;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.UserInterface.MenuScene
@@ -20,7 +21,7 @@ namespace Assets.Scripts.UserInterface.MenuScene
         /// <param name="index"></param>
         public void SceneLoad(int index)
         {
-            SceneManager.LoadScene(index);
+            GameManager.Instance.RequestNextLevel(index);
         }
     }
 }

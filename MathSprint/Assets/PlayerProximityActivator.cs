@@ -1,9 +1,10 @@
-﻿using Assets.Scripts.Entities;
+﻿using Assets.Scripts.Behaviour;
+using Assets.Scripts.Entities;
 using UnityEngine;
 
 namespace Assets
 {
-    public class PlayerProximityActivator : MonoBehaviour
+    public class PlayerProximityActivator : MonoBehaviour, IUpdateable
     {
         private Mob _controlledMob;
         [SerializeField]
@@ -32,10 +33,12 @@ namespace Assets
                 //_controlledMob.gameObject.SetActive(false);
                 _controlledMob.gameObject.layer = LayerMask.NameToLayer("Invisible");
             }
+
+            BehaviourManager.Instance.Add(this);
         }
 
         // Update is called once per frame
-        void Update()
+        public void OnUpdate()
         {
             if (_activated)
             {
@@ -75,6 +78,11 @@ namespace Assets
                     _controlledMob.gameObject.layer = LayerMask.NameToLayer("Default");
                 }
             }
+        }
+
+        void OnDestroy()
+        {
+            BehaviourManager.Instance.Remove(this);
         }
     }
 }
