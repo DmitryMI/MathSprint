@@ -31,7 +31,7 @@ namespace Assets
             if (_makeInvisible)
             {
                 //_controlledMob.gameObject.SetActive(false);
-                _controlledMob.gameObject.layer = LayerMask.NameToLayer("Invisible");
+                _controlledMob.gameObject.layer = LayerMask.NameToLayer("Invisibles");
             }
 
             BehaviourManager.Instance.Add(this);

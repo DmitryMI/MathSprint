@@ -66,7 +66,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 6441088604497372123}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 52c91397db5813c47a6029f37c15362b, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -114,11 +114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb99e50787f232409f50fafc4c66b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0
+  _damage: 1
   _jumpCooldownSeconds: 2
-  _forwardForce: 0
-  _jumpingForce: 2
-  _spriteFlipped: 1
+  _forwardForce: 15
+  _jumpingForce: 7
+  _spriteFlipped: 0
 --- !u!114 &3357017737391151074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7774bad3b64773549862c9bd01721776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _reactionDistance: 3
+  _reactionDistance: 4
   _activationTimeout: 2
 --- !u!1 &6441088605786584912
 GameObject:
@@ -158,7 +158,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6441088605786584912}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6441088604497372120}
@@ -203,14 +203,14 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f5c77ef017a40574aaf90d7c04cc3486, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6051b9b796bf63749b4cc27d5b3ee82a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.32, y: 0.32}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0

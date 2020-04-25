@@ -21,7 +21,7 @@ namespace Assets.Scripts.UserInterface.MenuScene
         /// <param name="index"></param>
         public void SceneLoad(int index)
         {
-            GameManager.Instance.RequestNextLevel(index);
+            SceneManager.LoadScene(index);
         }
     }
 }
