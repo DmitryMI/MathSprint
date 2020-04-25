@@ -62,6 +62,7 @@ namespace Assets.Scripts.CameraViewers
             transform.position += (Vector3)deltaScaled;
         }
 
+#if UNITY_EDITOR
         /// <summary>
         /// Is invoked from editor menu to generate background inside Unity
         /// </summary>
@@ -118,5 +119,6 @@ namespace Assets.Scripts.CameraViewers
 
             _instance.ConstructBackground();
         }
+#endif
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Assets.Scripts.Entities;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts.Game
 {
@@ -24,6 +25,8 @@ namespace Assets.Scripts.Game
         private Player _playerInstance;
         [SerializeField]
         private int _lifeCount;
+
+        [SerializeField] private GameObject _gameOverMessage;
 
         [SerializeField] private float _minY;
 
@@ -78,11 +81,20 @@ namespace Assets.Scripts.Game
         }
 
         /// <summary>
-        /// Request net game level
+        /// Requests next level
         /// </summary>
-        public void RequestNextLevel()
+        /// <param name="index">Next level index</param>
+        public void RequestNextLevel(int index)
         {
-            // TODO Load next scene
+            SceneManager.LoadScene(index);
+        }
+
+        /// <summary>
+        /// Closes application
+        /// </summary>
+        public void QuitGame()
+        {
+            Application.Quit(0);
         }
 
         /// <summary>
@@ -105,10 +117,10 @@ namespace Assets.Scripts.Game
 
         private void OnLifeZero()
         {
-            // TODO GameOver splash
             Debug.Log("Game over!");
-            RequestGamePause(true);
-            Application.Quit();
+            //RequestGamePause(true);
+            
+            _gameOverMessage.SetActive(true);
         }
     }
 }

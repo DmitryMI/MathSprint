@@ -25,7 +25,7 @@ namespace Assets.Scripts.Entities
         [SerializeField] private bool _spriteFlipped;
 #pragma warning restore 649
 
-        private Vector2 _orderTargetPoint;
+        private Vector2? _orderTargetPoint;
         private float _jumpCooldownCounter;
         private Rigidbody2D _rigidbody2d;
         private SpriteRenderer _spriteRenderer;
@@ -155,10 +155,18 @@ namespace Assets.Scripts.Entities
 
             _jumpCooldownCounter = 0;
 
-            float deltaX = _orderTargetPoint.x - transform.position.x;
+            if (_orderTargetPoint == null)
+            {
+                return;
+            }
+
+            Vector2 targetPoint = _orderTargetPoint.Value;
+            
+
+            float deltaX = targetPoint.x - transform.position.x;
             if (Mathf.Abs(deltaX) > 0.01f)
             {
-                JumpTowardsPoint(_orderTargetPoint);
+                JumpTowardsPoint(targetPoint);
             }
 
             _jumpCooldownCounter = _jumpCooldownSeconds;

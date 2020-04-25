@@ -4,6 +4,8 @@ using UnityEngine;
 
 namespace Assets.Scripts.Block
 {
+
+#if UNITY_EDITOR
     /// <summary>
     /// Unity editor script used to create surface automatically
     /// </summary>
@@ -218,4 +220,5 @@ namespace Assets.Scripts.Block
             }
         }
     }
+#endif
 }
