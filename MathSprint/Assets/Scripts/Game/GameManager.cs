@@ -26,6 +26,8 @@ namespace Assets.Scripts.Game
         [SerializeField]
         private int _lifeCount;
 
+        [SerializeField] private GameObject _gameOverMessage;
+
         [SerializeField] private float _minY;
 
         /// <summary>
@@ -88,6 +90,14 @@ namespace Assets.Scripts.Game
         }
 
         /// <summary>
+        /// Closes application
+        /// </summary>
+        public void QuitGame()
+        {
+            Application.Quit(0);
+        }
+
+        /// <summary>
         /// Request game pause
         /// </summary>
         /// <param name="pause">true if pause, false if resume</param>
@@ -107,10 +117,10 @@ namespace Assets.Scripts.Game
 
         private void OnLifeZero()
         {
-            // TODO GameOver splash
             Debug.Log("Game over!");
-            RequestGamePause(true);
-            Application.Quit();
+            //RequestGamePause(true);
+            
+            _gameOverMessage.SetActive(true);
         }
     }
 }
