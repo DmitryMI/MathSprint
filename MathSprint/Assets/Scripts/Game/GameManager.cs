@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.Behaviour;
 using Assets.Scripts.Entities;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,7 @@ namespace Assets.Scripts.Game
     /// <summary>
     /// Manages game logic
     /// </summary>
-    public class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour, IUpdateable
     {
         #region Singleton
 
@@ -30,6 +31,8 @@ namespace Assets.Scripts.Game
 
         [SerializeField] private float _minY;
 
+        [SerializeField] private GameObject _menuMessage;
+
         /// <summary>
         /// Minimal Y coordinate of the map
         /// </summary>
@@ -43,6 +46,8 @@ namespace Assets.Scripts.Game
             {
                 _playerInstance = GameObject.FindObjectOfType<Player>();
             }
+
+            BehaviourManager.Instance.Add(this);
         }
 
         /// <summary>
@@ -121,6 +126,29 @@ namespace Assets.Scripts.Game
             //RequestGamePause(true);
             
             _gameOverMessage.SetActive(true);
+        }
+
+        public void OnUpdate()
+        {
+            if (Input.GetKeyUp(KeyCode.Escape))
+            {
+                if (_menuMessage.activeSelf)
+                {
+                    _menuMessage.SetActive(false);
+                    RequestGamePause(false);
+                }
+                else
+                {
+                    _menuMessage.SetActive(true);
+                    RequestGamePause(true);
+                }
+            }
+        }
+
+        public void ContinueButtonClick()
+        {
+            RequestGamePause(false);
+            _menuMessage.SetActive(false);
         }
     }
 }
