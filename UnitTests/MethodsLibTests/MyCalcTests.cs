@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Assets.Scripts.MathTrials;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Assets.Scripts.MathTrials.Exercises;
+using Assets.Scripts.Utils;
 
 namespace MethodsLib.Tests
 {
@@ -28,6 +30,15 @@ namespace MethodsLib.Tests
             {
                 Assert.Fail("Answer does not match xml source");
             }
+        }
+
+        [TestMethod]
+        public void TestArrayUtils()
+        {
+            List<int> items = new List<int>() {1, 2, 3, 4};
+            int item = ArrayUtils.GetRandomItem(items);
+            bool contains = items.Contains(item);
+            Assert.IsTrue(contains);
         }
 
         // Этот должен быть положительным
