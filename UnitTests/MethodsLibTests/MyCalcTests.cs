@@ -11,6 +11,9 @@ namespace MethodsLib.Tests
     [TestClass]
     public class MyCalcTests
     {
+        /// <summary>
+        /// Testing of XML exercise parsing
+        /// </summary>
         [TestMethod]
         public void TestExerciseLoader()
         {
@@ -32,6 +35,9 @@ namespace MethodsLib.Tests
             }
         }
 
+        /// <summary>
+        /// Testing of ArrayUtils class
+        /// </summary>
         [TestMethod]
         public void TestArrayUtils()
         {
