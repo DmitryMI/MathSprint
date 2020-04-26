@@ -21,14 +21,14 @@ namespace Assets.Scripts.MathTrials
             }
         }
 
-        private struct XmlParsedData
+        public struct XmlParsedData
         {
             public string Text { get; set; }
             public string ImageName { get; set; }
             public string Answer { get; set; }
         }
 
-        private static XmlParsedData ParseXml(string xml)
+        public static XmlParsedData ParseXml(string xml)
         {
             XmlParsedData data = new XmlParsedData();
 
