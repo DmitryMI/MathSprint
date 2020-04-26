@@ -10,8 +10,8 @@ import os
 import sys
 
 if len(sys.argv) != 2:
-    sys.stderr.write('Arguments error. Usage:\n')
-    sys.stderr.write('\tpython prepare.py data\n')
+    sys.stderr.write('Arguments error.\n')
+
     sys.exit(1)
 input = sys.argv[1]
 
@@ -21,7 +21,7 @@ original_dim = 126750
 latent_dim = 2
 intermediate_dim = 256
 nb_epoch = 5
-epsilon_std = 1.0
+epsilon_std = 1.1
 
 #encoder
 x = Input(batch_shape=(batch_size, original_dim))

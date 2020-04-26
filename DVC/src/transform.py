@@ -5,8 +5,8 @@ import numpy as np
 
 
 if len(sys.argv) != 2:
-    sys.stderr.write('Arguments error. Usage:\n')
-    sys.stderr.write('\tpython prepare.py data\n')
+    sys.stderr.write('Arguments error.\n')
+
     sys.exit(1)
 input = sys.argv[1]
 

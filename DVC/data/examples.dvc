@@ -1,6 +1,6 @@
-md5: 7525c4d3c5790891ed625f85ee66f74d
+md5: cca754fccca9c52d4c2c8eb30c8f8117
 outs:
-- md5: b7d7b2c6370f063fdb8f9f7c7c3e3f6f.dir
+- md5: 8cfcd6b877c4f7f69a5bae8f899220c3.dir
   path: examples
   cache: true
   metric: false

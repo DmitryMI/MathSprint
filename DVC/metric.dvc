@@ -1,12 +1,12 @@
-md5: 861dd4e3e83a2c4c328daef4033d87c4
+md5: 1e58b76095b29bb6eaddbd3e0f15356d
 cmd: python src/metric.py data/test.psd data
 deps:
 - md5: 58f665d83ac67b1061db29fd4196f0e8
   path: src/metric.py
-- md5: 130ea0488abcca7263e6da79fc9a7fcd
+- md5: c7cc8119d1cc1ef1072a280a6f1308bc
   path: data/test.psd
 outs:
-- md5: 8cff0914ed623bc202e6ef3e6859ea52
+- md5: ab1fb03782e3e857881f7413b2e255b8
   path: data/auc.metric
   cache: false
   metric: true
