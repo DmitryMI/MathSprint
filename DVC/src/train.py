@@ -21,7 +21,7 @@ original_dim = 126750
 latent_dim = 2
 intermediate_dim = 256
 nb_epoch = 5
-epsilon_std = 1.1
+epsilon_std = 1.3
 
 #encoder
 x = Input(batch_shape=(batch_size, original_dim))

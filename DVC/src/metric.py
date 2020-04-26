@@ -14,5 +14,5 @@ input2 = sys.argv[2]
 img = Image.open(input)
 data = np.asarray(img)
 f = open(input2 + "/auc.metric", "w")
-f.write(str(np.sum(data)))
+f.write(str(np.sum(data)+1))
 
