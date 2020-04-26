@@ -12,6 +12,9 @@ namespace MethodsLib.Tests
         [TestMethod]
         public void TestExerciseLoader()
         {
+            // Testing fail for CI
+            Assert.Fail("You lose!");
+
             string xml =
                 "<Exercise>\r\n\t<Image>Example</Image>\r\n\t<Text>Example text for the exercise</Text>\r\n\t<Answer>0</Answer>\r\n</Exercise>";
             var parsedData =  ExercisesLoader.ParseXml(xml);
@@ -22,7 +25,7 @@ namespace MethodsLib.Tests
             }
             if (!parsedData.ImageName.Equals("Example"))
             {
-                Assert.Fail("Image name does not match xml source");
+                Assert.Fail("Image name d=oes not match xml source");
             }
             if (!parsedData.Answer.Equals("0"))
             {
