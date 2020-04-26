@@ -12,9 +12,6 @@ namespace MethodsLib.Tests
         [TestMethod]
         public void TestExerciseLoader()
         {
-            // Testing fail for CI
-            Assert.Fail("You lose!");
-
             string xml =
                 "<Exercise>\r\n\t<Image>Example</Image>\r\n\t<Text>Example text for the exercise</Text>\r\n\t<Answer>0</Answer>\r\n</Exercise>";
             var parsedData =  ExercisesLoader.ParseXml(xml);
