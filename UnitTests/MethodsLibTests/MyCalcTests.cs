@@ -1,20 +1,22 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using Assets.Scripts.MathTrials;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Assets.Scripts.MathTrials.Exercises;
+using Assets.Scripts.Utils;
 
 namespace MethodsLib.Tests
 {
     [TestClass]
     public class MyCalcTests
     {
+        /// <summary>
+        /// Testing of XML exercise parsing
+        /// </summary>
         [TestMethod]
         public void TestExerciseLoader()
         {
-            // Testing fail for CI
-            Assert.Fail("You lose!");
-
             string xml =
                 "<Exercise>\r\n\t<Image>Example</Image>\r\n\t<Text>Example text for the exercise</Text>\r\n\t<Answer>0</Answer>\r\n</Exercise>";
             var parsedData =  ExercisesLoader.ParseXml(xml);
@@ -31,6 +33,18 @@ namespace MethodsLib.Tests
             {
                 Assert.Fail("Answer does not match xml source");
             }
+        }
+
+        /// <summary>
+        /// Testing of ArrayUtils class
+        /// </summary>
+        [TestMethod]
+        public void TestArrayUtils()
+        {
+            List<int> items = new List<int>() {1, 2, 3, 4};
+            int item = ArrayUtils.GetRandomItem(items);
+            bool contains = items.Contains(item);
+            Assert.IsTrue(contains);
         }
 
         // Этот должен быть положительным
