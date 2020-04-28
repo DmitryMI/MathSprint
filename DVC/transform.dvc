@@ -1,0 +1,13 @@
+md5: 3f2c016396235d9debee66b6e5d8befc
+cmd: python src/transform.py data/examples
+deps:
+- md5: e4ea763d45570d28803ff01504997161
+  path: src/transform.py
+- md5: 8cfcd6b877c4f7f69a5bae8f899220c3.dir
+  path: data/examples
+outs:
+- md5: c437de4187e7ac26d75507bd98143453.dir
+  path: data/prepared
+  cache: true
+  metric: false
+  persist: false

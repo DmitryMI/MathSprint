@@ -1,0 +1,13 @@
+md5: 2070330bfe53e831380f57e102934898
+cmd: python src/metric.py data/test.psd data
+deps:
+- md5: ada963e98c73cb32127b614dc9c0b8bb
+  path: src/metric.py
+- md5: 130ea0488abcca7263e6da79fc9a7fcd
+  path: data/test.psd
+outs:
+- md5: ec18e12ae04a3b4c4b1a4d19945aef18
+  path: data/auc.metric
+  cache: false
+  metric: true
+  persist: false
