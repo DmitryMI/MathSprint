@@ -1,0 +1,13 @@
+md5: 1bc0ada192a0b3647984b6d9c5a6e829
+cmd: python src/train.py data/prepared
+deps:
+- md5: ee8fc45d57954754772289cc46a1b3cb
+  path: src/train.py
+- md5: c437de4187e7ac26d75507bd98143453.dir
+  path: data/prepared
+outs:
+- md5: 130ea0488abcca7263e6da79fc9a7fcd
+  path: data/test.psd
+  cache: true
+  metric: false
+  persist: false

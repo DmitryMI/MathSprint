@@ -1,0 +1,4 @@
+[core]
+    remote = img_create
+['remote "img_create"']
+    url = gdrive://1b09uU5hPtrUM5f2IJ3lVPD6FQYRCSfsm
