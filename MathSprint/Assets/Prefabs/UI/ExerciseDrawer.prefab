@@ -107,10 +107,10 @@ RectTransform:
   m_Father: {fileID: 6738952576201323281}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 217.09998, y: -215}
-  m_SizeDelta: {x: 425, y: 87.7}
+  m_AnchorMin: {x: 0.5085995, y: 0.03258484}
+  m_AnchorMax: {x: 0.96800005, y: 0.1951011}
+  m_AnchoredPosition: {x: -0.36999512, y: -1}
+  m_SizeDelta: {x: 0.049987793, y: -2.2999878}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6738952575177143490
 CanvasRenderer:
@@ -300,10 +300,10 @@ RectTransform:
   m_Father: {fileID: 6738952576201323281}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -212.5, y: 48}
-  m_SizeDelta: {x: 425, y: 425}
+  m_AnchorMin: {x: 0.0332285, y: 0.20400001}
+  m_AnchorMax: {x: 0.49631447, y: 0.95480514}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6738952575296701010
 CanvasRenderer:
@@ -373,10 +373,10 @@ RectTransform:
   m_Father: {fileID: 6738952575721731563}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchorMin: {x: 0.04562259, y: 0.10260192}
+  m_AnchorMax: {x: 0.98117906, y: 0.9088058}
+  m_AnchoredPosition: {x: -1.4134064, y: 0.5}
+  m_SizeDelta: {x: -3.17, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6738952575569250887
 CanvasRenderer:
@@ -453,10 +453,10 @@ RectTransform:
   m_Father: {fileID: 6738952576201323281}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -212.5, y: -215}
-  m_SizeDelta: {x: -478.1, y: -466.3}
+  m_AnchorMin: {x: 0.03814251, y: 0.03258484}
+  m_AnchorMax: {x: 0.5, y: 0.1951011}
+  m_AnchoredPosition: {x: -3.2299805, y: -1}
+  m_SizeDelta: {x: 2.4400024, y: -2.2999878}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6738952575721731572
 CanvasRenderer:
@@ -591,7 +591,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0.59999084}
+  m_AnchoredPosition: {x: 0, y: 0.5999756}
   m_SizeDelta: {x: -24, y: -13.2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6738952575785152005
@@ -666,10 +666,10 @@ RectTransform:
   m_Father: {fileID: 6738952575721731563}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.5}
-  m_SizeDelta: {x: -20, y: -13}
+  m_AnchorMin: {x: 0.04562259, y: 0.10260192}
+  m_AnchorMax: {x: 0.98117906, y: 0.9088058}
+  m_AnchoredPosition: {x: -1.3999939, y: 0}
+  m_SizeDelta: {x: -3.21, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6738952575994734882
 CanvasRenderer:
@@ -743,10 +743,10 @@ RectTransform:
   m_Father: {fileID: 6738952576201323281}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 217.1, y: 48}
-  m_SizeDelta: {x: 425, y: 425}
+  m_AnchorMin: {x: 0.5085995, y: 0.20946571}
+  m_AnchorMax: {x: 0.96800005, y: 0.9566102}
+  m_AnchoredPosition: {x: -0.3999939, y: -2.0250244}
+  m_SizeDelta: {x: 0.1000061, y: 2.949997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &6738952576201323286
 GameObject:
@@ -759,6 +759,7 @@ GameObject:
   - component: {fileID: 6738952576201323281}
   - component: {fileID: 6738952576201323283}
   - component: {fileID: 6738952576201323280}
+  - component: {fileID: 966515733}
   m_Layer: 5
   m_Name: ExerciseDrawer
   m_TagString: Untagged
@@ -825,3 +826,19 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &966515733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6738952576201323286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b6e2e1fe2a1d16b45a0c1ffcaebe11fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _imageDrawer: {fileID: 6738952575296701011}
+  _textDrawer: {fileID: 6738952575785152506}
+  _button: {fileID: 6738952575177143488}
+  _inputField: {fileID: 6738952575721731562}

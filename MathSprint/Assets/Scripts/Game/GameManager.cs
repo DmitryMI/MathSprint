@@ -48,6 +48,8 @@ namespace Assets.Scripts.Game
             }
 
             BehaviourManager.Instance.Add(this);
+
+            RequestGamePause(false);
         }
 
         /// <summary>
@@ -123,7 +125,7 @@ namespace Assets.Scripts.Game
         private void OnLifeZero()
         {
             Debug.Log("Game over!");
-            //RequestGamePause(true);
+            RequestGamePause(true);
             
             _gameOverMessage.SetActive(true);
         }
